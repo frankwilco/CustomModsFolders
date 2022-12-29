@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Verse;
+﻿using System.Collections.Generic;
 
 namespace ModFolders
 {
-    public class ModFolder : IExposable
+    public class ModLoaderData
+    {
+        public List<ModFolder> ModFolders = new List<ModFolder>();
+    }
+
+    public class ModFolder
     {
         public ModFolder(string path, bool active, bool markOfficial)
         {
@@ -30,15 +30,8 @@ namespace ModFolders
         {
         }
 
-        public string path = "";
-        public bool active = true;
-        public bool markOfficial = false;
-
-        public void ExposeData()
-        {
-            Scribe_Values.Look(ref path, "path", "");
-            Scribe_Values.Look(ref active, "active", true);
-            Scribe_Values.Look(ref markOfficial, "markOfficial", false);
-        }
+        public string path;
+        public bool active;
+        public bool markOfficial;
     }
 }

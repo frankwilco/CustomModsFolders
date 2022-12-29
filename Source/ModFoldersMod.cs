@@ -18,21 +18,6 @@ namespace ModFolders
             settings = GetSettings<ModFoldersModSettings>();
         }
 
-        public static bool harmonyPatched = false;
-
-        public static void Patch()
-        {
-            // FIXME: Stop using RimWorld's mod settings system because
-            // it is still unavailable on startup.
-            if (harmonyPatched)
-            {
-                return;
-            }
-            Harmony harmony = new Harmony("io.frankwilco.modfolders");
-            harmony.PatchAll();
-            harmonyPatched = true;
-        }
-
         public override string SettingsCategory()
         {
             return "mdf.prefs.title".Translate();

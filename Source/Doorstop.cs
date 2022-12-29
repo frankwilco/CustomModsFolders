@@ -1,10 +1,4 @@
-﻿using ModFolders;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HarmonyLib;
 
 namespace Doorstop
 {
@@ -12,7 +6,8 @@ namespace Doorstop
     {
         public static void Start()
         {
-            ModFoldersMod.Patch();
+            Harmony harmony = new Harmony("io.frankwilco.modfolders");
+            harmony.PatchAll();
         }
     }
 }

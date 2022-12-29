@@ -10,6 +10,8 @@ namespace ModFolders
         nameof(Verse.Steam.WorkshopItems.EnsureInit))]
     public static class ModLoader
     {
+        private const string kModFolderDataFile = "ModFolders.xml";
+
         private static readonly MethodInfo _tryAddMod =
             typeof(ModLister).GetMethod(
                 "TryAddMod", BindingFlags.NonPublic | BindingFlags.Static);
@@ -19,11 +21,37 @@ namespace ModFolders
             return (bool)_tryAddMod.Invoke(null, new object[] { mod });
         }
 
+        private static readonly string _dataFilePath =
+            Path.Combine(GenFilePaths.ModsFolderPath, kModFolderDataFile);
+        public static string DataFilePath
+        {
+            get { return _dataFilePath; }
+        }
+
+        private static ModLoaderData _data = null;
+        public static ModLoaderData Data
+        {
+            get
+            {
+                if (_data == null)
+                {
+                    DirectXmlCrossRefLoader.ResolveAllWantedCrossReferences(FailMode.LogErrors);
+                    _data = DirectXmlLoader.ItemFromXmlFile<ModLoaderData>(DataFilePath);
+                }
+                return _data;
+            }
+        }
+
+        public static void Save()
+        {
+            DirectXmlSaver.SaveDataObject(Data, DataFilePath);
+        }
+
         public static void Prefix()
         {
             string s = "Rebuilding mods list (custom folders)";
 
-            foreach (ModFolder folder in ModFoldersMod.settings.modFolders)
+            foreach (ModFolder folder in Data.ModFolders)
             {
                 if (!folder.active || folder.path.Trim() == "")
                 {

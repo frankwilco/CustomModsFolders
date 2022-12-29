@@ -7,14 +7,12 @@ namespace ModFolders
 {
     public class ModFoldersModSettings : ModSettings
     {
-        public bool enabled = true;
-        public List<ModFolder> modFolders = new List<ModFolder>();
         private string _newPath = "";
 
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref enabled, "enabled", true);
-            Scribe_Collections.Look(ref modFolders, "modFolders", LookMode.Deep);
+            ModLoader.Save();
+            base.ExposeData();
         }
 
         public void DoSettingsWindowContents(Rect inRect)
@@ -25,7 +23,7 @@ namespace ModFolders
             mainList.Label("mdf.prefs.scan_on_startup".Translate());
             var subList = mainList.BeginSection(450f);
             ModFolder folderToRemove = null;
-            foreach (var folder in modFolders)
+            foreach (var folder in ModLoader.Data.ModFolders)
             {
                 bool currentValue = folder.active;
                 bool newValue = folder.active;
@@ -38,7 +36,7 @@ namespace ModFolders
             }
             if (folderToRemove != null)
             {
-                modFolders.Remove(folderToRemove);
+                ModLoader.Data.ModFolders.Remove(folderToRemove);
             }
             mainList.EndSection(subList);
 
@@ -49,7 +47,7 @@ namespace ModFolders
             {
                 bool directoryExists = Directory.Exists(_newPath);
                 bool entryExists = false;
-                foreach (var folder in modFolders)
+                foreach (var folder in ModLoader.Data.ModFolders)
                 {
                     if (folder.path.ToLowerInvariant() == _newPath.ToLowerInvariant())
                     {
@@ -61,7 +59,7 @@ namespace ModFolders
                 if (!entryExists && directoryExists)
                 {
                     ModFolder modFolder = new ModFolder(_newPath);
-                    modFolders.Add(modFolder);
+                    ModLoader.Data.ModFolders.Add(modFolder);
                     _newPath = "";
                 }
                 else
