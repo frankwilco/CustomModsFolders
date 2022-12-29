@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+    <!-- Mod Settings -->
+    <mdf.prefs.title>Mod Folders</mdf.prefs.title>
+    <mdf.prefs.scan_on_startup>The following folders will be scanned during startup: </mdf.prefs.scan_on_startup>
+    <mdf.prefs.input_path.label>Folder path: </mdf.prefs.input_path.label>
+    <mdf.prefs.add_path.label>Add Mod Folder</mdf.prefs.add_path.label>
+    <mdf.dialog.entry_exists>The directory already exists in the list of mod folders.</mdf.dialog.entry_exists>
+    <mdf.dialog.directory_missing>The directory does not exist. Please check the path and try again.</mdf.dialog.directory_missing>
+    <mdf.dialog.add_path.title>Unable to add mod folder</mdf.dialog.add_path.title>
+</LanguageData>
