@@ -13,7 +13,7 @@ namespace Doorstop
                 return;
             }
 
-            Harmony harmony = new Harmony("io.frankwilco.modfolders");
+            Harmony harmony = new Harmony("io.frankwilco.custommodsfolders");
             harmony.PatchAll();
 
             IsPatched = true;

@@ -7,8 +7,8 @@
     <ProjectGuid>{123EB27E-2EEE-401E-8430-0A7D31266890}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModFolders</RootNamespace>
-    <AssemblyName>ModFolders</AssemblyName>
+    <RootNamespace>FrankWilco.CustomModsFolders</RootNamespace>
+    <AssemblyName>FrankWilco.CustomModsFolders</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -53,9 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Doorstop.cs" />
-    <Compile Include="ModFolder.cs" />
-    <Compile Include="ModFoldersMod.cs" />
-    <Compile Include="ModFoldersModSettings.cs" />
+    <Compile Include="ModLoaderData.cs" />
+    <Compile Include="ModsFolder.cs" />
+    <Compile Include="CustomModsFoldersMod.cs" />
+    <Compile Include="CustomModsFoldersModSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModLoader.cs" />
   </ItemGroup>

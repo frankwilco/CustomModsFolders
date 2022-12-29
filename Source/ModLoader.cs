@@ -4,13 +4,13 @@ using System.Linq;
 using System.Reflection;
 using Verse;
 
-namespace ModFolders
+namespace FrankWilco.CustomModsFolders
 {
     [HarmonyPatch(typeof(Verse.Steam.WorkshopItems),
         nameof(Verse.Steam.WorkshopItems.EnsureInit))]
     public static class ModLoader
     {
-        private const string kModFolderDataFile = "ModFolders.xml";
+        private const string kModsFoldersDataFile = "ModsFolders.xml";
 
         private static readonly MethodInfo _tryAddMod =
             typeof(ModLister).GetMethod(
@@ -22,7 +22,7 @@ namespace ModFolders
         }
 
         private static readonly string _dataFilePath =
-            Path.Combine(GenFilePaths.ModsFolderPath, kModFolderDataFile);
+            Path.Combine(GenFilePaths.ModsFolderPath, kModsFoldersDataFile);
         public static string DataFilePath
         {
             get { return _dataFilePath; }
@@ -49,9 +49,9 @@ namespace ModFolders
 
         public static void Prefix()
         {
-            string s = "Rebuilding mods list (custom folders)";
+            string s = "Rebuilding mods list (custom mods folders)";
 
-            foreach (ModFolder folder in Data.ModFolders)
+            foreach (ModsFolder folder in Data.ModsFolders)
             {
                 if (!folder.active || folder.path.Trim() == "")
                 {

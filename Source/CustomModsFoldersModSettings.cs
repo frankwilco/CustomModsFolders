@@ -3,9 +3,9 @@ using System.IO;
 using UnityEngine;
 using Verse;
 
-namespace ModFolders
+namespace FrankWilco.CustomModsFolders
 {
-    public class ModFoldersModSettings : ModSettings
+    public class CustomModsFoldersModSettings : ModSettings
     {
         private string _newPath = "";
         private bool _warningShown = false;
@@ -33,8 +33,8 @@ namespace ModFolders
 
             mainList.Label("mdf.prefs.scan_on_startup".Translate());
             var subList = mainList.BeginSection(450f);
-            ModFolder folderToRemove = null;
-            foreach (var folder in ModLoader.Data.ModFolders)
+            ModsFolder folderToRemove = null;
+            foreach (var folder in ModLoader.Data.ModsFolders)
             {
                 bool currentValue = folder.active;
                 bool newValue = folder.active;
@@ -47,7 +47,7 @@ namespace ModFolders
             }
             if (folderToRemove != null)
             {
-                ModLoader.Data.ModFolders.Remove(folderToRemove);
+                ModLoader.Data.ModsFolders.Remove(folderToRemove);
             }
             mainList.EndSection(subList);
 
@@ -58,7 +58,7 @@ namespace ModFolders
             {
                 bool directoryExists = Directory.Exists(_newPath);
                 bool entryExists = false;
-                foreach (var folder in ModLoader.Data.ModFolders)
+                foreach (var folder in ModLoader.Data.ModsFolders)
                 {
                     if (folder.path.ToLowerInvariant() == _newPath.ToLowerInvariant())
                     {
@@ -69,8 +69,8 @@ namespace ModFolders
 
                 if (!entryExists && directoryExists)
                 {
-                    ModFolder modFolder = new ModFolder(_newPath);
-                    ModLoader.Data.ModFolders.Add(modFolder);
+                    ModsFolder modFolder = new ModsFolder(_newPath);
+                    ModLoader.Data.ModsFolders.Add(modFolder);
                     _newPath = "";
                 }
                 else

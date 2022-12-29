@@ -7,15 +7,15 @@ using HarmonyLib;
 using UnityEngine;
 using Verse;
 
-namespace ModFolders
+namespace FrankWilco.CustomModsFolders
 {
-    public class ModFoldersMod : Mod
+    public class CustomModsFoldersMod : Mod
     {
-        public static ModFoldersModSettings settings;
+        public static CustomModsFoldersModSettings settings;
 
-        public ModFoldersMod(ModContentPack content) : base(content)
+        public CustomModsFoldersMod(ModContentPack content) : base(content)
         {
-            settings = GetSettings<ModFoldersModSettings>();
+            settings = GetSettings<CustomModsFoldersModSettings>();
         }
 
         public override string SettingsCategory()

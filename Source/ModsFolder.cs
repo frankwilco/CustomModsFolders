@@ -1,32 +1,27 @@
 ﻿using System.Collections.Generic;
 
-namespace ModFolders
+namespace FrankWilco.CustomModsFolders
 {
-    public class ModLoaderData
+    public class ModsFolder
     {
-        public List<ModFolder> ModFolders = new List<ModFolder>();
-    }
-
-    public class ModFolder
-    {
-        public ModFolder(string path, bool active, bool markOfficial)
+        public ModsFolder(string path, bool active, bool markOfficial)
         {
             this.path = path;
             this.active = active;
             this.markOfficial = markOfficial;
         }
 
-        public ModFolder(string path, bool active)
+        public ModsFolder(string path, bool active)
             : this(path, active, false)
         {
         }
 
-        public ModFolder(string path)
+        public ModsFolder(string path)
             : this(path, true)
         {
         }
 
-        public ModFolder() : this("", true, false)
+        public ModsFolder() : this("", true, false)
         {
         }
 

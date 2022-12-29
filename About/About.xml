@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-    <name>Mod Folders</name>
-    <packageId>io.frankwilco.modfolders</packageId>
+    <name>Custom Mods Folders</name>
+    <packageId>io.frankwilco.custommodsfolders</packageId>
     <author>FrankWilco</author>
-    <url>https://github.com/fofajardo/rw-modfolders</url>
+    <url>https://github.com/fofajardo/custommodsfolders</url>
     <supportedVersions>
         <li>1.4</li>
     </supportedVersions>
