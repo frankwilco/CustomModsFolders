@@ -8,4 +8,6 @@
     <mdf.dialog.entry_exists>The directory already exists in the list of mod folders.</mdf.dialog.entry_exists>
     <mdf.dialog.directory_missing>The directory does not exist. Please check the path and try again.</mdf.dialog.directory_missing>
     <mdf.dialog.add_path.title>Unable to add mod folder</mdf.dialog.add_path.title>
+    <mdf.dialog.unpatched.title>Failed to patch</mdf.dialog.unpatched.title>
+    <mdf.dialog.unpatched.desc>The startup mod loading sequence was not patched.\n\n{0} requires UnityDoorstop 4 to be installed in the RimWorld directory, with the mod's main assembly set as the target assembly in the configuration file.</mdf.dialog.unpatched.desc>
 </LanguageData>

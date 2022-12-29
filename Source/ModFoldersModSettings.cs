@@ -8,6 +8,7 @@ namespace ModFolders
     public class ModFoldersModSettings : ModSettings
     {
         private string _newPath = "";
+        private bool _warningShown = false;
 
         public override void ExposeData()
         {
@@ -17,6 +18,16 @@ namespace ModFolders
 
         public void DoSettingsWindowContents(Rect inRect)
         {
+            if (!Doorstop.Entrypoint.IsPatched && !_warningShown)
+            {
+                var dialog = new Dialog_MessageBox(
+                    "mdf.dialog.unpatched.desc".Translate(
+                        "mdf.prefs.title".Translate()),
+                    title: "mdf.dialog.unpatched.title".Translate());
+                Find.WindowStack.Add(dialog);
+                _warningShown = true;
+            }
+
             var mainList = new Listing_Standard();
             mainList.Begin(inRect);
 
