@@ -5,7 +5,7 @@ using System.Reflection;
 using Verse;
 using Verse.Steam;
 
-namespace FrankWilco.CustomModsFolders
+namespace FrankWilco.RimWorld
 {
     [HarmonyPatch(typeof(WorkshopItems), nameof(WorkshopItems.EnsureInit))]
     public static class ModLoader

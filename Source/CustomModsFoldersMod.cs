@@ -7,7 +7,7 @@ using HarmonyLib;
 using UnityEngine;
 using Verse;
 
-namespace FrankWilco.CustomModsFolders
+namespace FrankWilco.RimWorld
 {
     public class CustomModsFoldersMod : Mod
     {

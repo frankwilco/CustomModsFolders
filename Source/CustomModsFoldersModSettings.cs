@@ -3,7 +3,7 @@ using System.IO;
 using UnityEngine;
 using Verse;
 
-namespace FrankWilco.CustomModsFolders
+namespace FrankWilco.RimWorld
 {
     public class CustomModsFoldersModSettings : ModSettings
     {

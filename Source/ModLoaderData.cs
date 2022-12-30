@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FrankWilco.CustomModsFolders
+namespace FrankWilco.RimWorld
 {
     public class ModLoaderData
     {

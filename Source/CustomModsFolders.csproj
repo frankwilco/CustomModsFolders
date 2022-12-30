@@ -7,7 +7,7 @@
     <ProjectGuid>{123EB27E-2EEE-401E-8430-0A7D31266890}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FrankWilco.CustomModsFolders</RootNamespace>
+    <RootNamespace>FrankWilco.RimWorld</RootNamespace>
     <AssemblyName>FrankWilco.CustomModsFolders</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
