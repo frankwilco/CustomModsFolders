@@ -8,15 +8,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Verse;
+using Verse.Noise;
 
 namespace FrankWilco.RimWorld
 {
     [HarmonyPatch(typeof(GenCommandLine), nameof(GenCommandLine.Restart))]
     public static class RestartModifier
     {
+        public static readonly string doorstopDisabledVariable = "DOORSTOP_DISABLE";
         public static readonly string[] doorstopVariables =
             {
-                "DOORSTOP_DISABLE",
                 "DOORSTOP_INITIALIZED",
                 "DOORSTOP_DLL_SEARCH_DIRS",
                 "DOORSTOP_INVOKE_DLL_PATH",
@@ -35,6 +36,25 @@ namespace FrankWilco.RimWorld
             foreach (string variable in doorstopVariables)
             {
                 Environment.SetEnvironmentVariable(variable, null);
+            }
+
+            // Check first if UnityDoorstop is disabled in an environment
+            // variable stored in either HKCU or HKLM before removing it.
+            bool isDisabled = false;
+            // Respect user choice on Windows only. There's no way to check if
+            // the disabled variable was set by UnityDoorstep or by the user
+            // on other platforms.
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            {
+                bool userDisabled = Environment.GetEnvironmentVariable(
+                    doorstopDisabledVariable, EnvironmentVariableTarget.User) != null;
+                bool machineDisabled = Environment.GetEnvironmentVariable(
+                    doorstopDisabledVariable, EnvironmentVariableTarget.Machine) != null;
+                isDisabled = userDisabled || machineDisabled;
+            }
+            if (!isDisabled)
+            {
+                Environment.SetEnvironmentVariable(doorstopDisabledVariable, null);
             }
         }
     }
