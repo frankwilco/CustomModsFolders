@@ -3,11 +3,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Verse;
+using Verse.Steam;
 
 namespace FrankWilco.CustomModsFolders
 {
-    [HarmonyPatch(typeof(Verse.Steam.WorkshopItems),
-        nameof(Verse.Steam.WorkshopItems.EnsureInit))]
+    [HarmonyPatch(typeof(WorkshopItems), nameof(WorkshopItems.EnsureInit))]
     public static class ModLoader
     {
         private const string kModsFoldersDataFile = "ModsFolders.xml";
