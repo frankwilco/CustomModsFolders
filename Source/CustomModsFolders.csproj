@@ -55,8 +55,8 @@
     <Compile Include="Doorstop.cs" />
     <Compile Include="ModLoaderData.cs" />
     <Compile Include="ModsFolder.cs" />
-    <Compile Include="CustomModsFoldersMod.cs" />
-    <Compile Include="CustomModsFoldersModSettings.cs" />
+    <Compile Include="Mod.cs" />
+    <Compile Include="ModSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModLoader.cs" />
     <Compile Include="RestartModifier.cs" />
