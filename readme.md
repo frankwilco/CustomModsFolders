@@ -19,7 +19,7 @@ Particularly useful if you want to:
 ## Compatibility
 - This is incompatible with any mod that also requires the use of UnityDoorstop.
     * This mod requires UnityDoorstop because it has to modify the game's mod loading process, which cannot be achieved by a regular mod.
-- This was not tested in non-Windows platforms.
+- This was not tested on non-Windows platforms.
 
 ## Building from source
 Clone the repository or extract a downloaded ZIP copy.
