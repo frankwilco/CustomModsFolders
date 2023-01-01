@@ -22,5 +22,24 @@
         <li>Ludeon.RimWorld</li>
     </loadBefore>
     <description>
+This mod allows loading mods from directories outside the traditional `Mods` directory where the game resides.
+
+Particularly useful if you want to:
+- Organize mods and separate them by author, category, or whichever way you like.
+- Separate mods made by other people from mods made by yourself, especially if you're a mod developer.
+- Quickly add and remove a set of mods that you'd want to test.
+
+&lt;size=24&gt;Usage&lt;/size&gt;
+- Go to this mod's options.
+- Enter in the path from which mods will be loaded, and click Add Mods Folder.
+- The path will show up in a list above, which will also show previously added mods folders.
+    * You can remove a path by clicking either on the path itself on the list or the check box.
+- Changes are saved immediately upon closing the options window.
+    * If the mod's options was opened from the mods configuration window, you have to close that window too.
+
+&lt;size=24&gt;Compatibility&lt;/size&gt;
+- This is incompatible with any mod that also requires the use of UnityDoorstop.
+    * This mod requires UnityDoorstop because it has to modify the game's mod loading process, which cannot be achieved by a regular mod.
+- This was not tested on non-Windows platforms.
     </description>
 </ModMetaData>
