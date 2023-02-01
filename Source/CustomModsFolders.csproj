@@ -55,8 +55,8 @@
     <Compile Include="Mod.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ModLoader.cs" />
-    <Compile Include="RestartModifier.cs" />
+    <Compile Include="ModLoaderPatch.cs" />
+    <Compile Include="RestartPatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\About\About.xml">

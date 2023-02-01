@@ -13,7 +13,7 @@ using Verse.Noise;
 namespace FrankWilco.RimWorld
 {
     [HarmonyPatch(typeof(GenCommandLine), nameof(GenCommandLine.Restart))]
-    public static class RestartModifier
+    public static class RestartPatch
     {
         public static readonly string doorstopDisabledVariable = "DOORSTOP_DISABLE";
         public static readonly string[] doorstopVariables =

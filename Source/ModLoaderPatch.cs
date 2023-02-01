@@ -7,8 +7,8 @@ using Verse.Steam;
 
 namespace FrankWilco.RimWorld
 {
-    [HarmonyPatch(typeof(WorkshopItems), nameof(WorkshopItems.EnsureInit))]
-    public static class ModLoader
+    [HarmonyPatch]
+    public static class ModLoaderPatch
     {
         private static readonly MethodInfo _tryAddMod =
             typeof(ModLister).GetMethod(
@@ -19,7 +19,9 @@ namespace FrankWilco.RimWorld
             return (bool)_tryAddMod.Invoke(null, new object[] { mod });
         }
 
-        public static void Prefix()
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(WorkshopItems), nameof(WorkshopItems.EnsureInit))]
+        public static void WorkshopItems_EnsureInit_Prefix()
         {
             string s = "Rebuilding mods list (custom mods folders)";
 
