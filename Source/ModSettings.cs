@@ -9,11 +9,42 @@ namespace FrankWilco.RimWorld
     {
         private string _newPath = "";
         private bool _warningShown = false;
+        private Vector2 scrollPosition = Vector2.zero;
 
         public override void ExposeData()
         {
             ModLoaderData.Save();
             base.ExposeData();
+        }
+
+        // XXX: remove if RimWorld has an equivalent method.
+        private Rect OffsetRect(
+            Rect rect,
+            float? x = null,
+            float? y = null,
+            float? newWidth = null,
+            float? newHeight = null)
+        {
+            var newRect = new Rect(rect);
+            if (x != null)
+            {
+                newRect.x += x.Value;
+                newRect.width -= newWidth.Value;
+            }
+            if (y != null)
+            {
+                newRect.y += y.Value;
+                newRect.height -= y.Value;
+            }
+            if (newWidth != null)
+            {
+                newRect.width = newWidth.Value;
+            }
+            if (newHeight != null)
+            {
+                newRect.height = newHeight.Value;
+            }
+            return newRect;
         }
 
         public void DoSettingsWindowContents(Rect inRect)
@@ -28,17 +59,27 @@ namespace FrankWilco.RimWorld
                 _warningShown = true;
             }
 
-            var mainList = new Listing_Standard();
-            mainList.Begin(inRect);
+            var topList = new Listing_Standard();
+            topList.Begin(inRect);
+            topList.Label("mdf.prefs.scan_on_startup".Translate());
+            topList.GapLine();
+            topList.End();
 
-            mainList.Label("mdf.prefs.scan_on_startup".Translate());
-            var subList = mainList.BeginSection(450f);
+            var scrollBoxRect = OffsetRect(
+                inRect, y: topList.CurHeight, newHeight: 450f);
+            var scrollViewRect = new Rect(
+                0, 0, inRect.width - 24f,
+                ModLoaderData.Current.ModsFolders.Count * 26f + 8f);
+            var modList = new Listing_Standard();
+            Widgets.BeginScrollView(
+                scrollBoxRect, ref scrollPosition, scrollViewRect);
+            modList.Begin(scrollViewRect);
             ModsFolder folderToRemove = null;
             foreach (var folder in ModLoaderData.Current.ModsFolders)
             {
                 bool currentValue = folder.active;
                 bool newValue = folder.active;
-                subList.CheckboxLabeled(folder.path, ref newValue);
+                modList.CheckboxLabeled(folder.path, ref newValue);
                 if (newValue != currentValue)
                 {
                     folderToRemove = folder;
@@ -49,12 +90,15 @@ namespace FrankWilco.RimWorld
             {
                 ModLoaderData.Current.ModsFolders.Remove(folderToRemove);
             }
-            mainList.EndSection(subList);
+            modList.End();
+            Widgets.EndScrollView();
 
-            mainList.Label("mdf.prefs.input_path.label".Translate());
-            _newPath = mainList.TextEntry(_newPath);
-            
-            if (mainList.ButtonText("mdf.prefs.add_path.label".Translate()))
+            var bottomList = new Listing_Standard();
+            bottomList.Begin(
+                OffsetRect(inRect, y: topList.CurHeight + scrollBoxRect.height));
+            bottomList.Label("mdf.prefs.input_path.label".Translate());
+            _newPath = bottomList.TextEntry(_newPath);
+            if (bottomList.ButtonText("mdf.prefs.add_path.label".Translate()))
             {
                 bool directoryExists = Directory.Exists(_newPath);
                 bool entryExists = false;
@@ -89,8 +133,7 @@ namespace FrankWilco.RimWorld
                     Find.WindowStack.Add(dialog);
                 }
             }
-
-            mainList.End();
+            bottomList.End();
         }
     }
 }
