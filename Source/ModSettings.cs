@@ -12,7 +12,7 @@ namespace FrankWilco.RimWorld
 
         public override void ExposeData()
         {
-            ModLoader.Save();
+            ModLoaderData.Save();
             base.ExposeData();
         }
 
@@ -34,7 +34,7 @@ namespace FrankWilco.RimWorld
             mainList.Label("mdf.prefs.scan_on_startup".Translate());
             var subList = mainList.BeginSection(450f);
             ModsFolder folderToRemove = null;
-            foreach (var folder in ModLoader.Data.ModsFolders)
+            foreach (var folder in ModLoaderData.Current.ModsFolders)
             {
                 bool currentValue = folder.active;
                 bool newValue = folder.active;
@@ -47,7 +47,7 @@ namespace FrankWilco.RimWorld
             }
             if (folderToRemove != null)
             {
-                ModLoader.Data.ModsFolders.Remove(folderToRemove);
+                ModLoaderData.Current.ModsFolders.Remove(folderToRemove);
             }
             mainList.EndSection(subList);
 
@@ -58,7 +58,7 @@ namespace FrankWilco.RimWorld
             {
                 bool directoryExists = Directory.Exists(_newPath);
                 bool entryExists = false;
-                foreach (var folder in ModLoader.Data.ModsFolders)
+                foreach (var folder in ModLoaderData.Current.ModsFolders)
                 {
                     if (folder.path.ToLowerInvariant() == _newPath.ToLowerInvariant())
                     {
@@ -70,7 +70,7 @@ namespace FrankWilco.RimWorld
                 if (!entryExists && directoryExists)
                 {
                     ModsFolder modFolder = new ModsFolder(_newPath);
-                    ModLoader.Data.ModsFolders.Add(modFolder);
+                    ModLoaderData.Current.ModsFolders.Add(modFolder);
                     _newPath = "";
                 }
                 else
