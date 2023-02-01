@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace FrankWilco.RimWorld
     public static class ModLoaderPatch
     {
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(WorkshopItems), nameof(WorkshopItems.EnsureInit))]
+        [HarmonyPatch(
+            typeof(WorkshopItems),
+            nameof(WorkshopItems.EnsureInit))]
         public static void WorkshopItems_EnsureInit_Prefix()
         {
             var TryAddMod = AccessTools.Method(typeof(ModLister), "TryAddMod");
@@ -48,6 +51,26 @@ namespace FrankWilco.RimWorld
             {
                 Log.Message(s);
             }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(
+            typeof(GenFilePaths),
+            nameof(GenFilePaths.ModsConfigFilePath),
+            MethodType.Getter)]
+        public static bool ModsConfigFilePath_Prefix(ref string __result)
+        {
+            if (GenCommandLine.TryGetCommandLineArg("configname", out var configName))
+            {
+                Log.Message($"Overriding mods config file path: {configName}");
+                string configFilePath = Path.Combine(
+                    GenFilePaths.ConfigFolderPath,
+                    $"ModsConfig.{configName}.xml");
+                CustomModsFoldersMod.ConfigFileOverride = configFilePath;
+                __result = configFilePath;
+                return false;
+            }
+            return true;
         }
     }
 }

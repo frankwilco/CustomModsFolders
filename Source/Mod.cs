@@ -11,6 +11,8 @@ namespace FrankWilco.RimWorld
 {
     public class CustomModsFoldersMod : Mod
     {
+        public static string ConfigFileOverride { get; internal set; }
+
         public static CustomModsFoldersModSettings settings;
 
         public CustomModsFoldersMod(ModContentPack content) : base(content)
