@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,19 +11,12 @@ namespace FrankWilco.RimWorld
     [HarmonyPatch]
     public static class ModLoaderPatch
     {
-        private static readonly MethodInfo _tryAddMod =
-            typeof(ModLister).GetMethod(
-                "TryAddMod", BindingFlags.NonPublic | BindingFlags.Static);
-
-        private static bool TryAddMod(ModMetaData mod)
-        {
-            return (bool)_tryAddMod.Invoke(null, new object[] { mod });
-        }
-
         [HarmonyPrefix]
         [HarmonyPatch(typeof(WorkshopItems), nameof(WorkshopItems.EnsureInit))]
         public static void WorkshopItems_EnsureInit_Prefix()
         {
+            var TryAddMod = AccessTools.Method(typeof(ModLister), "TryAddMod");
+
             string s = "Rebuilding mods list (custom mods folders)";
 
             foreach (ModsFolder folder in ModLoaderData.Current.ModsFolders)
@@ -39,7 +33,10 @@ namespace FrankWilco.RimWorld
                 {
                     ModMetaData modMetaData = new ModMetaData(
                         item, official: folder.markOfficial);
-                    if (TryAddMod(modMetaData))
+                    // TryAddMod(modMetaData)
+                    var isModValid = (bool)TryAddMod.Invoke(
+                        null, new object[] { modMetaData });
+                    if (isModValid)
                     {
                         s = s + "\n  Adding " + modMetaData.ToStringLong();
                     }
