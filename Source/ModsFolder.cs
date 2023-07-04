@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FrankWilco.RimWorld
+﻿namespace FrankWilco.RimWorld
 {
     public class ModsFolder
     {
