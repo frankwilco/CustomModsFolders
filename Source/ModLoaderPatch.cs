@@ -70,9 +70,14 @@ namespace FrankWilco.RimWorld
             {
                 if (!folder.active || folder.path.Trim() == "")
                 {
+                    s += $"\nSkipping inactive or invalid custom folder: {folder.path}";
                     continue;
                 }
                 s += $"\nAdding mods from custom folder: {folder.path}";
+                if (folder.markOfficial)
+                {
+                    s += " (marked as official content)";
+                }
                 var directoryNames = from d
                                      in new DirectoryInfo(folder.path).GetDirectories()
                                      select d.FullName;
