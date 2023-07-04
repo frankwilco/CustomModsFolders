@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
-using System;
+using Steamworks;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Verse;
 using Verse.Steam;
 
@@ -12,12 +12,56 @@ namespace FrankWilco.RimWorld
     [HarmonyPatch]
     public static class ModLoaderPatch
     {
-        [HarmonyPrefix]
+        private static bool _workshopInitialized = false;
+
+        // We have to parse all workshop items manually here because we've
+        // accessed the WorkshopItems class too early. Keep this in sync with
+        // Verse.Steam.WorkshopItems.RebuildItemsList().
+        private static void WorkshopRebuildItemsList()
+        {
+            // This should return early on non-Steam builds, since the game's
+            // Steam Manager is never initialized in those cases.
+            if (_workshopInitialized || !SteamManager.Initialized)
+            {
+                return;
+            }
+
+            var subbedItems = (List<WorkshopItem>)AccessTools.Field(
+                typeof(WorkshopItems), "subbedItems").GetValue(null);
+            var downloadingItems = (List<WorkshopItem_Downloading>)AccessTools.Field(
+                typeof(WorkshopItems), "downloadingItems").GetValue(null);
+            var allSubscribedItems = (IEnumerable<PublishedFileId_t>)AccessTools.Method(
+                typeof(Workshop), "AllSubscribedItems").Invoke(null, null);
+
+            subbedItems.Clear();
+            downloadingItems.Clear();
+            // ... in Workshop.AllSubscribedItems()
+            foreach (PublishedFileId_t item in allSubscribedItems)
+            {
+                WorkshopItem workshopItem = WorkshopItem.MakeFrom(item);
+                if (workshopItem != null)
+                {
+                    subbedItems.Add(workshopItem);
+                    if (workshopItem is WorkshopItem_Downloading)
+                    {
+                        downloadingItems.Add(workshopItem as WorkshopItem_Downloading);
+                    }
+                }
+            }
+
+            // We're done.
+            _workshopInitialized = true;
+        }
+
+        [HarmonyPostfix]
         [HarmonyPatch(
             typeof(WorkshopItems),
             nameof(WorkshopItems.EnsureInit))]
-        public static void WorkshopItems_EnsureInit_Prefix()
+        public static void WorkshopItems_EnsureInit_Postfix()
         {
+            // XXX: Force re-initialization of workshop items.
+            WorkshopRebuildItemsList();
+
             var TryAddMod = AccessTools.Method(typeof(ModLister), "TryAddMod");
 
             string s = "Rebuilding mods list (custom mods folders)";
