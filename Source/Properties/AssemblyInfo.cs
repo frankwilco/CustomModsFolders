@@ -1,18 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle("Custom Mods Folders")]
 #if DEBUG
 [assembly: AssemblyConfiguration("DEBUG")]
 #else
 [assembly: AssemblyConfiguration("RELEASE")]
 #endif
-[assembly: AssemblyCompany("FrankWilco")]
-[assembly: AssemblyProduct("Custom Mods Folders")]
-[assembly: AssemblyCopyright("Copyright © FrankWilco 2022")]
 [assembly: AssemblyTrademark("No trademarks registered")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -22,16 +15,3 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("123eb27e-2eee-401e-8430-0a7d31266890")]
-
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
