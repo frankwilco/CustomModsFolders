@@ -84,13 +84,24 @@ namespace FrankWilco.RimWorld
                 foreach (string item in directoryNames)
                 {
                     ModMetaData modMetaData = new ModMetaData(
-                        item, official: folder.markOfficial);
+                        item,
+                        official: folder.markOfficial
+                    );
                     // TryAddMod(modMetaData)
-                    var isModValid = (bool)TryAddMod.Invoke(
+                    bool isModValid = (bool)TryAddMod.Invoke(
                         null, new object[] { modMetaData });
                     if (isModValid)
                     {
-                        s = s + "\n  Adding " + modMetaData.ToStringLong();
+                        s += "\n  Adding " + modMetaData.ToStringLong();
+                    }
+                    else
+                    {
+                        s += "\n  Invalid mod not added " + modMetaData.ToStringLong();
+                    }
+                    uint steamAppId = modMetaData.SteamAppId;
+                    if (steamAppId != 0)
+                    {
+                        s += $" (steam_appid: {steamAppId})";
                     }
                 }
             }
