@@ -7,6 +7,7 @@
     <supportedVersions>
         <li>1.4</li>
         <li>1.5</li>
+        <li>1.6</li>
     </supportedVersions>
     <modDependencies>
         <li>
@@ -38,6 +39,5 @@ Particularly useful if you want to:
 &lt;size=24&gt;Compatibility&lt;/size&gt;
 - This is incompatible with any mod that also requires the use of UnityDoorstop.
     * This mod requires UnityDoorstop because it has to modify the game's mod loading process, which cannot be achieved by a regular mod.
-- This was not tested on non-Windows platforms.
     </description>
 </ModMetaData>
