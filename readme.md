@@ -24,14 +24,27 @@ Particularly useful if you want to:
 ## Building from source
 Clone the repository or extract a downloaded ZIP copy.
 - Requirements
-    * Visual Studio 2022 or higher
-    * .NET Framework 4.8 SDK
-    * [UnityDoorstop 4](https://github.com/NeighTools/UnityDoorstop/releases/tag/v4.0.0)
+    * Visual Studio 2022 or higher OR Visual Studio Code with C#/.NET extensions
+    * .NET 10
 
 ## Download
-Check the [releases](https://github.com/frankwilco/CustomModsFolders/releases) page of this repository. UnityDoorstop is already bundled with these releases and do not have to be downloaded separately, unless you're building from source.
+Check the [releases](https://github.com/frankwilco/CustomModsFolders/releases) page of this repository. **This is not your ordinary RimWorld mod and setting it up is slightly more involved.**
 
-**This is not your ordinary RimWorld mod and setting it up is slightly more involved:**
+### 1.7 and above
+1. Download the latest release using the link above.
+2. Extract the contents of the ZIP file to the `Mods` directory, located where RimWorld is installed. This may vary depending on where you purchased the game.
+3. Update RimWorld's launch options in Steam or through your distributor with the following:
+    **Windows**: `DOTNET_STARTUP_HOOKS=<replace with path to RimWorld>\Mods\CustomModsFolders\Assemblies\FrankWilco.CustomModsFolders.dll %command%`
+    **Linux:** `DOTNET_STARTUP_HOOKS=<replace with path to RimWorld>/Mods/CustomModsFolders/Assemblies/FrankWilco.CustomModsFolders.dll %command%`
+4. Return to the game.
+5. Enable the mod and make sure it loads in the following order: after Harmony, before Core.
+6. Save and apply changes.
+   - You can confirm that it was installed properly if you go the mod's options and no warning prompt shows up.
+   - You can also enable verbose logging (Development mode has to be turned on) in the Options menu and search the log file for "custom mods folders" to verify if mods from other directories are loaded.
+
+### 1.6 and lower
+UnityDoorstop is already bundled with these releases and do not have to be downloaded separately, unless you're building from source.
+
 1. Download the latest release using the link above.
 2. Launch RimWorld.
 3. Extract the contents of the ZIP file to the directory where RimWorld is installed. This may vary depending on where you purchased the game.
