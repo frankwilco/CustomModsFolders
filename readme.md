@@ -34,8 +34,11 @@ Check the [releases](https://github.com/frankwilco/CustomModsFolders/releases) p
 1. Download the latest release using the link above.
 2. Extract the contents of the ZIP file to the `Mods` directory, located where RimWorld is installed. This may vary depending on where you purchased the game.
 3. Update RimWorld's launch options in Steam or through your distributor with the following:
+
     **Windows**: `DOTNET_STARTUP_HOOKS=<replace with path to RimWorld>\Mods\CustomModsFolders\Assemblies\FrankWilco.CustomModsFolders.dll %command%`
+
     **Linux:** `DOTNET_STARTUP_HOOKS=<replace with path to RimWorld>/Mods/CustomModsFolders/Assemblies/FrankWilco.CustomModsFolders.dll %command%`
+
 4. Return to the game.
 5. Enable the mod and make sure it loads in the following order: after Harmony, before Core.
 6. Save and apply changes.
