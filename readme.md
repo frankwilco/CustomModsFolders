@@ -16,11 +16,6 @@ Particularly useful if you want to:
 - Changes are saved immediately upon closing the options window.
     * If the mod's options was opened from the mods configuration window, you have to close that window too.
 
-## Compatibility
-- This is incompatible with any mod that also requires the use of UnityDoorstop.
-    * This mod requires UnityDoorstop because it has to modify the game's mod loading process, which cannot be achieved by a regular mod.
-- This was not tested on non-Windows platforms.
-
 ## Building from source
 Clone the repository or extract a downloaded ZIP copy.
 - Requirements
@@ -46,7 +41,7 @@ Check the [releases](https://github.com/frankwilco/CustomModsFolders/releases) p
    - You can also enable verbose logging (Development mode has to be turned on) in the Options menu and search the log file for "custom mods folders" to verify if mods from other directories are loaded.
 
 ### 1.6 and lower
-UnityDoorstop is already bundled with these releases and do not have to be downloaded separately, unless you're building from source.
+UnityDoorstop is already bundled with these releases and do not have to be downloaded separately, unless you're building from source. [v1.0.0](https://github.com/frankwilco/CustomModsFolders/releases/tag/v1.0.0) is the last version to support RimWorld v1.6 and lower.
 
 1. Download the latest release using the link above.
 2. Launch RimWorld.

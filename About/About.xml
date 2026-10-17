@@ -33,9 +33,5 @@ Particularly useful if you want to:
     * You can remove a path by clicking either on the path itself on the list or the check box.
 - Changes are saved immediately upon closing the options window.
     * If the mod's options was opened from the mods configuration window, you have to close that window too.
-
-&lt;size=24&gt;Compatibility&lt;/size&gt;
-- This is incompatible with any mod that also requires the use of UnityDoorstop.
-    * This mod requires UnityDoorstop because it has to modify the game's mod loading process, which cannot be achieved by a regular mod.
     </description>
 </ModMetaData>
