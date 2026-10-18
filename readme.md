@@ -19,6 +19,7 @@ Particularly useful if you want to:
     * You can remove a path by clicking either on the path itself on the list or the check box.
 - Changes are saved immediately upon closing the options window.
     * If the mod's options was opened from the mods configuration window, you have to close that window too.
+- You can also use the `-configname=<name>` command-line argument (e.g., `-configname=dev`) to load and save your active mod list using `ModsConfig.<name>.xml` instead of the default `ModsConfig.xml` in RimWorld's `Config` directory.
 
 ## Building from source
 Clone the repository or extract a downloaded ZIP copy.
