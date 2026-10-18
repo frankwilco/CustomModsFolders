@@ -1,4 +1,8 @@
-![Logo](/About/Preview.png)
+<div style="text-align: center;">
+
+![Logo](/About/Preview.svg)
+
+</div>
 
 # Custom Mods Folders
 This mod allows loading mods from directories outside the traditional `Mods` directory where the game resides.
